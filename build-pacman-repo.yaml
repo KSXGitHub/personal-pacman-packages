@@ -6,6 +6,5 @@ global-settings:
   packager: 'Hoàng Văn Khải <hvksmr1996@gmail.com>'
   check: enabled
   allow-failure: false
-  record-failed-builds: pacman-repo/failed-build-records/personal-pacman-packages.yaml
 members:
   - directory: gnome-shell-extension-workspace-isolated-dash
