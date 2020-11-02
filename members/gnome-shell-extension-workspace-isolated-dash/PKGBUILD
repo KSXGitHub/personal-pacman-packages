@@ -1,0 +1,33 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='gnome-shell-extension-workspace-isolated-dash'
+pkgdesc='Isolate workspaces in Gnome Shell'
+pkgver='15'
+pkgrel='1'
+arch=('any')
+url='https://github.com/N-Yuki/gnome-shell-extension-workspace-isolated-dash'
+license=('GPL-2.0')
+optdepends=(
+  'gnome-shell>=3'
+  'gjs: GNOME Shell use GJS to run its extensions'
+)
+makedepends=(
+  'coreutils'
+)
+source=(
+  "$url/archive/v$pkgver.tar.gz"
+)
+sha512sums=(
+  'SKIP'
+)
+_uuid='workspace-isolated-dash@n-yuki'
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
+  cd "$srcdir/$pkgname-$pkgver/workspace-isolated-dash"
+  dest="$pkgdir/usr/share/gnome-shell/extensions/$_uuid"
+  install -Dm644 metadata.json "$dest/metadata.json"
+  install -Dm644 extension.js "$dest/extension.js"
+}
