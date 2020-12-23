@@ -6,6 +6,7 @@ global-settings:
   packager: 'Hoàng Văn Khải <hvksmr1996@gmail.com>'
   check: enabled
   allow-failure: false
+  install-missing-dependencies: true
 members:
   - directory: gnome-shell-extension-workspace-isolated-dash
   - directory: makepad-dev
