@@ -41,7 +41,7 @@ package() {
   cp -r "$srcdir/makepad-$_commit/" "$pkgdir/opt/$pkgname/"
 
   mkdir -p "$pkgdir/usr/share/licenses/$pkgname/"
-  ln -s "$pkgdir/opt/$pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  ln -s "/opt/$pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 
   install -Dm755 makepad.dev.sh "$pkgdir/usr/bin/makepad.dev"
 }
