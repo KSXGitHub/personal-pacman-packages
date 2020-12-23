@@ -11,12 +11,13 @@ _repo='https://github.com/makepad/makepad'
 license=('GPL-2.0')
 conflicts=('makepad')
 provides=('makepad')
-makedepends=(
+depends=(
   'coreutils'
   'rustup'
   'libxcursor'
   'libx11'
   'mesa'
+  'bash'
 )
 source=(
   "$_commit.zip::$_repo/archive/$_commit.zip"
@@ -24,6 +25,7 @@ source=(
 sha512sums=(
   'SKIP'
 )
+options=('!strip')
 
 build() {
   cd "$srcdir/makepad-$_commit"
@@ -32,7 +34,18 @@ build() {
 }
 
 package() {
-  cd "$srcdir/makepad-$_commit"
-  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-  install -Dm755 target/release/makepad "$pkgdir/usr/bin/makepad"
+  mkdir -p "$pkgdir/opt/"
+  cp -r "$srcdir/makepad-$_commit/" "$pkgdir/opt/$pkgname/"
+
+  mkdir -p "$pkgdir/usr/share/licenses/$pkgname/"
+  ln -s "$pkgdir/opt/$pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+  mkdir -p "$pkgdir/usr/bin/"
+  (
+    echo '#!/bin/bash'
+    echo 'set -o errexit -o pipefail -o nounset'
+    echo "cd $pkgdir/opt/$pkgname"
+    echo 'exec target/release/makepad'
+  ) >"$pkgdir/usr/bin/makepad.dev"
+  chmod a+x "$pkgdir/usr/bin/makepad.dev"
 }
