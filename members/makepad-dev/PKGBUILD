@@ -29,8 +29,9 @@ options=('!strip')
 
 build() {
   cd "$srcdir/makepad-$_commit"
+  rustup toolchain install stable
   rustup target add wasm32-unknown-unknown
-  cargo build --package makepad --release
+  cargo +stable build --package makepad --release
 }
 
 package() {
