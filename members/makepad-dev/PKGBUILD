@@ -1,0 +1,40 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='makepad-dev'
+pkgdesc='Makepad is a creative software development platform for Rust that compiles to wasm/webGL, osx/metal, windows/dx11 linux/opengl'
+_commit='f43dc45ac3edec1f347812adfdafdacbf457babe'
+pkgver="2020.12.23.$_commit"
+pkgrel='1'
+arch=('x86_64')
+url='http://makepad.dev/'
+_repo='https://github.com/makepad/makepad'
+license=('GPL-2.0')
+conflicts=('makepad')
+provides=('makepad')
+makedepends=(
+  'coreutils'
+  'rustup'
+  'libxcursor'
+  'libx11'
+  'mesa'
+)
+source=(
+  "$_commit.zip::$_repo/archive/$_commit.zip"
+  "$_commit.LICENSE::$_repo/raw/$_commit/LICENSE"
+)
+sha512sums=(
+  'SKIP'
+  'SKIP'
+)
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+  rustup target add wasm32-unknown-unknown
+  cargo build --package makepad --release
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  install -Dm644 "$_commit.LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm755 makepad/target/release/makepad "$pkgdir/usr/bin/makepad"
+}
