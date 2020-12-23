@@ -26,13 +26,13 @@ sha512sums=(
 )
 
 build() {
-  cd "$srcdir/$pkgname-$_commit"
+  cd "$srcdir/makepad-$_commit"
   rustup target add wasm32-unknown-unknown
   cargo build --package makepad --release
 }
 
 package() {
-  cd "$srcdir/$pkgname-$_commit"
+  cd "$srcdir/makepad-$_commit"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm755 makepad/target/release/makepad "$pkgdir/usr/bin/makepad"
 }
