@@ -21,8 +21,10 @@ depends=(
 )
 source=(
   "$_commit.zip::$_repo/archive/$_commit.zip"
+  'makepad.dev.sh'
 )
 sha512sums=(
+  'SKIP'
   'SKIP'
 )
 options=('!strip')
@@ -41,12 +43,5 @@ package() {
   mkdir -p "$pkgdir/usr/share/licenses/$pkgname/"
   ln -s "$pkgdir/opt/$pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 
-  mkdir -p "$pkgdir/usr/bin/"
-  (
-    echo '#!/bin/bash'
-    echo 'set -o errexit -o pipefail -o nounset'
-    echo "cd $pkgdir/opt/$pkgname"
-    echo 'exec target/release/makepad'
-  ) >"$pkgdir/usr/bin/makepad.dev"
-  chmod a+x "$pkgdir/usr/bin/makepad.dev"
+  install -Dm755 makepad.dev.sh "$pkgdir/usr/bin/makepad.dev"
 }
