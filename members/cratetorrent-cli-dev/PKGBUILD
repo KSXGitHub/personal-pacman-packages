@@ -1,0 +1,37 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='cratetorrent-cli-dev'
+pkgdesc='CLI for cratetorrent'
+_commit='14d46af118f0263c496cf5ed08c940c960bd71b4'
+pkgver="2020.12.24.$_commit"
+pkgrel='1'
+arch=('x86_64')
+url='https://github.com/mandreyel/cratetorrent'
+_repo="$url"
+license=('MIT' 'Apache')
+conflicts=('cratetorrent-cli')
+provides=('cratetorrent-cli')
+makedepends=(
+  'coreutils'
+  'rustup'
+)
+source=(
+  "$_commit.zip::$_repo/archive/$_commit.zip"
+)
+sha512sums=(
+  'SKIP'
+)
+
+build() {
+  cd "$srcdir/cratetorrent-$_commit"
+  rustup toolchain install stable
+  cargo +stable build --package cratetorrent-cli --release
+}
+
+package() {
+  cd "$srcdir/cratetorrent-$_commit"
+  install -Dm755 target/release/cratetorrent-cli "$pkgdir/usr/bin/cratetorrent-cli"
+  for name in README DESIGN PEER_MESSAGES RESEARCH; do
+    install -Dm644 "$name.md" "$pkgdir/usr/share/doc/$pkgname/$name.md"
+  done
+}
