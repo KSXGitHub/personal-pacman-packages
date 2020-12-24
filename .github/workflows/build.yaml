@@ -5,6 +5,18 @@ on:
       - master
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install APT packages
+        run: sudo apt install python3 python3-yaml
+
+      - name: Run tests
+        run: ./test.bash
+
   build:
     runs-on: ubuntu-latest
 
@@ -47,15 +59,3 @@ jobs:
           git config credential.helper '/tmp/credential-helper'
           git pull origin master --rebase=true # to avoid conflicts due to data races
           git push origin master
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install APT packages
-        run: sudo apt install python3 python3-yaml
-
-      - name: Run tests
-        run: ./test.bash
