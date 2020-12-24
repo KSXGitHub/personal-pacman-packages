@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 from os import scandir
 from os.path import dirname, join, isfile
 from yaml import load, SafeLoader
