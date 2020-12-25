@@ -1,0 +1,37 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='ion-shell-dev'
+pkgdesc='The Ion Shell. Compatible with Redox and Linux'
+_commit='e033ca1c0c2ff8d1932137d2ed7354d003ad9cdc'
+pkgver="2020.12.25.$_commit"
+pkgrel='1'
+arch=('x86_64')
+url='https://doc.redox-os.org/ion-manual/html/'
+_repo='https://gitlab.redox-os.org/redox-os/ion'
+license=('MIT')
+conflicts=('ion-shell')
+provides=('ion-shell')
+makedepends=(
+  'coreutils'
+  'rustup'
+  'make'
+)
+source=(
+  "$_repo/-/archive/$_commit/ion-$_commit.tar.bz2"
+)
+sha512sums=(
+  'SKIP'
+)
+
+build() {
+  cd "$srcdir/ion-$_commit"
+  rustup toolchain install stable
+  RUSTUP=0 make
+}
+
+package() {
+  cd "$srcdir/ion-$_commit"
+  install -Dm755 target/release/ion "$pkgdir/usr/bin/ion"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}
