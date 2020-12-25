@@ -2,8 +2,8 @@
 
 pkgname='cratetorrent-cli-dev'
 pkgdesc='CLI for cratetorrent'
-_commit='14d46af118f0263c496cf5ed08c940c960bd71b4'
-pkgver="2020.12.24.$_commit"
+_commit='0a6225b4e626c2ff13f37c4c3f1469fdcc1795f2'
+pkgver="2020.12.25.$_commit"
 pkgrel='1'
 arch=('x86_64')
 url='https://github.com/mandreyel/cratetorrent'
