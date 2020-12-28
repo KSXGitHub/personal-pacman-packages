@@ -12,3 +12,4 @@ members:
   - directory: gnome-shell-extension-workspace-isolated-dash
   - directory: ion-shell-dev
   - directory: makepad-dev
+  - directory: rd-dev

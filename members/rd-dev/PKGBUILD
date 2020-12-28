@@ -1,0 +1,39 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='rd-dev'
+pkgdesc='Record/Replay debugger written in Rust'
+_commit='4d087da41cbcdf07c78c3e6bd06fdffdfa5594ce'
+pkgver="2020.12.28.$_commit"
+pkgrel='1'
+arch=('x86_64')
+url='https://github.com/sidkshatriya/rd'
+_repo="$url"
+license=('MIT')
+conflicts=('rd')
+provides=('rd')
+makedepends=(
+  'coreutils'
+  'rustup'
+  'bash'      # install.sh
+  'capnproto' # build.rs
+)
+source=(
+  "$_commit.zip::$_repo/archive/$_commit.zip"
+)
+sha512sums=(
+  'SKIP'
+)
+
+build() {
+  cd "rd-$_commit"
+  rustup toolchain install nightly
+  echo nightly >rust-toolchain
+  cargo build --release
+}
+
+package() {
+  cd "rd-$_commit"
+  PREFIX="$pkgdir/usr" ./install.sh
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
