@@ -46,8 +46,8 @@ package() {
   local prefix="$pkgdir/usr/lib/$pkgname"
   rm -rf "$prefix"/{images,sounds}
   install -Dm644 index.html "$prefix/index.html"
-  install -Dm644 dino.min.js "$prefix/dino.min.js"
-  install -Dm644 dino.min.css "$prefix/dino.min.css"
+  install -Dm644 dino.min.js "$prefix/dino.js"
+  install -Dm644 dino.min.css "$prefix/dino.css"
   cp -r images "$prefix/images"
   cp -r sounds "$prefix/sounds"
 }
