@@ -1,0 +1,5 @@
+*
+!/.gitignore
+!/PKGBUILD
+!/package.json
+!/package-lock.json

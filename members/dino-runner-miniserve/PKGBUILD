@@ -1,0 +1,40 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='dino-runner-miniserve'
+pkgdesc='T-Rex Runner is an Easter Egg in Google Chrome which appears when you suddenly lose internet access'
+pkgver="2021.03.09"
+pkgrel='1'
+arch=('any')
+license=('MIT')
+depends=(
+  'dino-runner-data'
+  'bash'
+  'miniserve'
+  'grep'
+)
+optdepends=(
+  'systemd: Background service'
+)
+makedepends=(
+  'coreutils'
+)
+source=(
+  'start-dino-runner-server.bash'
+  'dino-runner-miniserve.service'
+  'flags.txt'
+  'LICENSE.md'
+)
+sha512sums=(
+  'SKIP'
+  'SKIP'
+  'SKIP'
+  'SKIP'
+)
+
+package() {
+  cd "$srcdir"
+  install -Dm755 start-dino-runner-server.bash "$pkgdir/usr/bin/start-dino-runner-server"
+  install -Dm644 dino-runner-miniserve.service "$pkgdir/usr/lib/systemd/system/dino-runner-miniserve.service"
+  install -Dm644 flags.txt "$pkgdir/etc/$pkgname/flags.txt"
+  install -Dm644 LICENSE.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE.md"
+}

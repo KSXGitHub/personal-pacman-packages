@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "csso-cli": "^3.0.0",
+    "terser": "^5.6.0"
+  }
+}

@@ -1,0 +1,7 @@
+*
+!/.gitignore
+!/PKGBUILD
+!/*.bash
+!/LICENSE.md
+!/flags.txt
+!/*.service

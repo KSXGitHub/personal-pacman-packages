@@ -1,0 +1,9 @@
+[Unit]
+Description=T-Rex Runner is an Easter Egg in Google Chrome which appears when you suddenly lose internet access
+
+[Service]
+ExecStart=/usr/bin/start-dino-runner-server
+Environment=DINO_RUNNER_SERVER_FLAGS_FILE=/etc/dino-runner-miniserve/flags.txt
+
+[Install]
+WantedBy=default.target

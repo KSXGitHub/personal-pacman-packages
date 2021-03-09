@@ -1,0 +1,12 @@
+# Arguments to pass to miniserve.
+# Each line is an argument.
+# Run `miniserve --help` for more options.
+
+# File at /etc/dino-runner-miniserve/flags.txt (this file) is used by the systemd service.
+# You may set DINO_RUNNER_SERVER_FLAGS_FILE environment variable the change location.
+
+# Port to serve
+--port=87961
+
+# Serve index.html when open directory
+--index=index.html

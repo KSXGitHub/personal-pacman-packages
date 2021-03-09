@@ -1,0 +1,53 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='dino-runner-data'
+pkgdesc='T-Rex Runner is an Easter Egg in Google Chrome which appears when you suddenly lose internet access'
+_commit='2cdf2883ec498d045188290555cb8d4e451b7ca1'
+pkgver="2021.03.09.$_commit"
+pkgrel='1'
+arch=('any')
+_repo='https://github.com/KSXGitHub/dino-runner'
+url="$_repo"
+license=('BSD')
+makedepends=(
+  'coreutils'
+  'npm'
+)
+source=(
+  "$_repo/archive/$_commit.zip"
+  'package.json'
+)
+sha512sums=(
+  'SKIP'
+  'SKIP'
+)
+
+build() {
+  cd "$srcdir/dino-runner-$_commit"
+
+  msg2 'Installing npm dependencies...'
+  npm install
+
+  msg2 'Minifying JavaScript files...'
+  npx terser dino.js -o dino.min.js
+
+  msg2 'Minifying CSS files...'
+  npx csso dino.css -o dino.min.css
+}
+
+package() {
+  cd "$srcdir/dino-runner-$_commit"
+
+  msg2 'Installing license and documents...'
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+
+  msg2 'Installing resources...'
+  local prefix="$pkgdir/usr/lib/$pkgname"
+  rm -rf "$prefix"/{images,sounds}
+  install -Dm644 index.html "$prefix/index.html"
+  install -Dm644 dino.min.js "$prefix/dino.min.js"
+  install -Dm644 dino.min.css "$prefix/dino.min.css"
+  cp -r images "$prefix/images"
+  cp -r sounds "$prefix/sounds"
+}
