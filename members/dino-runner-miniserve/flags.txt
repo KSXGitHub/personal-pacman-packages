@@ -6,7 +6,7 @@
 # You may set DINO_RUNNER_SERVER_FLAGS_FILE environment variable the change location.
 
 # Port to serve
---port=87961
+--port=8796
 
 # Serve index.html when open directory
 --index=index.html
