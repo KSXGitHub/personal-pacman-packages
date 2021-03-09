@@ -3,7 +3,7 @@
 pkgname='dino-runner-miniserve'
 pkgdesc='T-Rex Runner is an Easter Egg in Google Chrome which appears when you suddenly lose internet access'
 pkgver="2021.03.09"
-pkgrel='1'
+pkgrel='2'
 arch=('any')
 license=('MIT')
 depends=(
