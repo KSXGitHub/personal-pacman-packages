@@ -1,0 +1,46 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='ruffle-nightly'
+pkgver='2021.03.22'
+_git_tag="nightly-${pkgver//./-}"
+pkgrel='1'
+arch=('x86_64')
+url='https://ruffle.rs'
+_repo='https://github.com/ruffle-rs/ruffle'
+license=('MIT' 'Apache')
+conflicts=('ruffle' 'ruffle-nightly-bin' 'ruffle-git')
+provides=('ruffle')
+makedepends=(
+  'coreutils'
+  'rustup'
+  'python3' # xcb
+)
+depends=(
+  'openssl'
+  'zlib'
+  'libxcb'
+  'alsa-lib'
+)
+source=(
+  "$pkgver.zip::$_repo/archive/refs/tags/$_git_tag.zip"
+)
+sha256sums=(
+  'SKIP'
+)
+
+build() {
+  cd "$srcdir/ruffle-$_git_tag/desktop"
+  rustup toolchain install stable
+  env CARGO_INCREMENTAL=0 \
+    cargo +stable build \
+    --features=lzma \
+    --release \
+    --locked
+}
+
+package() {
+  cd "$srcdir/ruffle-$_git_tag"
+  install -Dm755 target/release/ruffle_desktop "$pkgdir/usr/bin/ruffle"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 LICENSE.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE.md"
+}
