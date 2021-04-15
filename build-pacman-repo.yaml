@@ -17,4 +17,5 @@ members:
   - directory: ion-shell-dev
   - directory: makepad-dev
   - directory: numix-circle-icon-theme-dev
+  - directory: numix-icon-theme-dev
   - directory: ruffle-nightly
