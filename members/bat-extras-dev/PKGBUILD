@@ -1,0 +1,73 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+pkgname=bat-extras-dev
+pkgver=2021.04.15
+pkgrel=1
+pkgdesc="Bash scripts that integrate bat with various command line tools."
+arch=('any')
+url="https://github.com/eth-p/bat-extras"
+license=('MIT')
+depends=('bash' 'bat' 'coreutils' 'less')
+makedepends=('git')
+checkdepends=('ripgrep')
+optdepends=(
+  'git: required for batdiff script'
+  'ripgrep: required for batgrep script'
+  'man-db: required for batman script'
+  'ncurses: optional for batdiff script'
+  'git-delta: optional for batdiff script'
+  'exa: optional for batpipe script'
+  'entr: optional for batwatch script'
+  'prettier: various code formatting for prettybat script'
+  'shfmt: bash formatting for prettybat script'
+  'rustfmt: Rust formatting for prettybat script'
+  'clang: C / C++ / Objective-C formatting for prettybat script'
+  'python-black: Python formatting for prettybat script'
+)
+provides=(
+  bat-extras
+  bat-extras-git
+)
+conflicts=(
+  bat-extras
+  bat-extras-git
+)
+source=(
+  'git+https://github.com/eth-p/bat-extras.git'
+  'git+https://github.com/eth-p/best.git'
+  'git+https://github.com/eth-p/best-tests.git'
+)
+sha256sums=(
+  'SKIP'
+  'SKIP'
+  'SKIP'
+)
+
+prepare() {
+  cd "$srcdir/bat-extras"
+  git submodule init .test-framework
+  git config submodule.best.url "$srcdir/best"
+  git submodule update
+
+  cd .test-framework
+  git submodule init tests
+  git config submodule.best-tests.url "$srcdir/best-tests"
+  git submodule update
+}
+
+build() {
+  cd "$srcdir/bat-extras"
+  ./build.sh --minify=none --no-verify
+}
+
+check() {
+  cd "$srcdir/bat-extras"
+  ./test.sh
+}
+
+package() {
+  cd "$srcdir/bat-extras"
+  install -Dm755 bin/* -t "$pkgdir/usr/bin"
+  install -Dm644 doc/* -t "$pkgdir/usr/share/doc/$pkgname"
+  install -Dm644 LICENSE.md -t "$pkgdir/usr/share/licenses/$pkgname"
+  install -Dm644 man/* -t "$pkgdir/usr/share/man/man1"
+}

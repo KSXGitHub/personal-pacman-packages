@@ -8,6 +8,7 @@ global-settings:
   allow-failure: false
   install-missing-dependencies: true
 members:
+  - directory: bat-extras-dev
   - directory: cratetorrent-cli-dev
   - directory: dino-runner-data
   - directory: dino-runner-miniserve
