@@ -25,11 +25,11 @@ optdepends=(
   'python-black: Python formatting for prettybat script'
 )
 provides=(
-  bat-extras
+  'bat-extras'
 )
 conflicts=(
-  bat-extras
-  bat-extras-git
+  'bat-extras'
+  'bat-extras-git'
 )
 source=(
   'git+https://github.com/eth-p/bat-extras.git'
