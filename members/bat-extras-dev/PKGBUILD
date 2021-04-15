@@ -26,7 +26,6 @@ optdepends=(
 )
 provides=(
   bat-extras
-  bat-extras-git
 )
 conflicts=(
   bat-extras
