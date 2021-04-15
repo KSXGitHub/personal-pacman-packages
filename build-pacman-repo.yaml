@@ -20,3 +20,4 @@ members:
   - directory: numix-icon-theme-dev
   - directory: oh-my-zsh-dev
   - directory: ruffle-nightly
+  - directory: zsh-autocomplete-dev

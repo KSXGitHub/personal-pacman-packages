@@ -1,0 +1,33 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='zsh-autocomplete-dev'
+pkgdesc='IDE-style type-ahead completion for Zsh'
+_commit='473d31a9c949a7e449a9b41fcd57b663c14f9216'
+pkgver='2021.04.15'
+pkgrel='1'
+arch=('any')
+url='https://github.com/marlonrichert/zsh-autocomplete'
+_repo='https://github.com/marlonrichert/zsh-autocomplete'
+license=('MIT')
+optdepends=(
+  'zsh: Consumer of this plugin'
+)
+provides=(
+  'zsh-autocomplete'
+)
+conflicts=(
+  'zsh-autocomplete'
+  'zsh-autocomplete-git'
+)
+source=("$_repo/archive/$_commit.zip")
+sha512sums=('SKIP')
+
+package() {
+  _srcdir="$srcdir/zsh-autocomplete-$_commit"
+  _plugindir="$pkgdir/usr/share/zsh/plugins"
+
+  install -dm755 "$_plugindir"
+  cp -r "$_srcdir" "$_plugindir"
+
+  install -Dm644 "$_srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
