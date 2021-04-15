@@ -1,0 +1,30 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname=gedit-autotab-dev
+pkgdesc="Automatically detect tab preferences for source files"
+_commit='cc70af27ec461da0454ec6f7db4c591488754907'
+pkgver=2021.04.15
+pkgrel=1
+arch=('any')
+url='https://github.com/kapouer/gedit-autotab'
+_repo='https://github.com/kapouer/gedit-autotab'
+license=('GPL3')
+optdepends=(
+  'gedit: Consumer of this plugin'
+)
+conflicts=(
+  'gedit-autotab'
+  'gedit-autotab-git'
+)
+provides=(
+  'gedit-autotab'
+  'gedit-autotab-git'
+)
+source=("$_repo/archive/$_commit.zip")
+sha256sums=('SKIP')
+
+package() {
+  cd "$srcdir/gedit-autotab-$_commit"
+  install -d "$pkgdir/usr/lib/gedit/plugins"
+  install -m644 -t "$pkgdir/usr/lib/gedit/plugins/" autotab.{plugin,py}
+}

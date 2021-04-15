@@ -12,6 +12,7 @@ members:
   - directory: cratetorrent-cli-dev
   - directory: dino-runner-data
   - directory: dino-runner-miniserve
+  - directory: gedit-autotab-dev
   - directory: gnome-shell-extension-workspace-isolated-dash
   - directory: ion-shell-dev
   - directory: makepad-dev
