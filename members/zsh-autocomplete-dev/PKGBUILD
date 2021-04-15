@@ -23,11 +23,11 @@ source=("$_repo/archive/$_commit.zip")
 sha512sums=('SKIP')
 
 package() {
-  _srcdir="$srcdir/zsh-autocomplete-$_commit"
-  _plugindir="$pkgdir/usr/share/zsh/plugins"
+  cd "$srcdir/zsh-autocomplete-$_commit"
 
+  _plugindir="$pkgdir/usr/share/zsh/plugins/zsh-autocomplete"
   install -dm755 "$_plugindir"
-  cp -r "$_srcdir" "$_plugindir"
+  cp -r . "$_plugindir"
 
-  install -Dm644 "$_srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
