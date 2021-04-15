@@ -3,7 +3,7 @@
 pkgname='numix-icon-theme-dev'
 pkgdesc='Base icon theme from the Numix project'
 _commit='97c01aee9b5b88200843edf41597ab6f987e288b'
-pkgver='2020.04.15'
+pkgver='2021.04.15'
 pkgrel='1'
 arch=('any')
 url='https://github.com/numixproject/numix-icon-theme'

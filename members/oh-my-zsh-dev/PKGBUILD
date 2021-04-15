@@ -3,7 +3,7 @@
 pkgname='oh-my-zsh-dev'
 pkgdesc='A community-driven framework for managing your zsh configuration. Includes 180+ optional plugins and over 120 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community'
 _commit='12669f29f0843b8b980dd137f150a74511f88842'
-pkgver='2020.04.15'
+pkgver='2021.04.15'
 pkgrel='1'
 arch=('any')
 url='https://github.com/ohmyzsh/ohmyzsh'
