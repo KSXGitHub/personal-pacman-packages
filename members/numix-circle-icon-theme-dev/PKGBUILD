@@ -1,0 +1,29 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname=numix-circle-icon-theme-dev
+pkgdesc='Circle icon theme from the Numix project'
+_commit='c14253371f8b63f577f202df8a5da9a2ce0e995d'
+pkgver=2020.04.15
+pkgrel=1
+arch=('any')
+url='https://github.com/numixproject/numix-icon-theme-circle'
+_repo='https://github.com/numixproject/numix-icon-theme-circle'
+license=('GPL3')
+depends=('numix-icon-theme')
+provides=(
+  'numix-circle-icon-theme'
+  'numix-circle-light-icon-theme'
+)
+conflicts=(
+  'numix-circle-icon-theme'
+  'numix-circle-light-icon-theme'
+)
+options=('!strip')
+source=("$_repo/archive/$_commit.zip")
+sha256sums=('SKIP')
+
+package() {
+  cd "$srcdir/numix-icon-theme-circle-$_commit"
+  install -dm 755 "${pkgdir}"/usr/share/icons
+  cp -dr --no-preserve='ownership' Numix-Circle{,-Light} "${pkgdir}"/usr/share/icons/
+}
