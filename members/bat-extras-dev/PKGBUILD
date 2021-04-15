@@ -1,7 +1,8 @@
 # Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
-pkgname=bat-extras-dev
-pkgver=2021.04.15
-pkgrel=1
+
+pkgname='bat-extras-dev'
+pkgver='2021.04.15'
+pkgrel='1'
 pkgdesc="Bash scripts that integrate bat with various command line tools."
 arch=('any')
 url="https://github.com/eth-p/bat-extras"
