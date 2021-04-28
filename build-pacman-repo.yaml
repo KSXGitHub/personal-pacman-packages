@@ -21,3 +21,4 @@ members:
   - directory: oh-my-zsh-dev
   - directory: ruffle-nightly
   - directory: zsh-autocomplete-dev
+  - directory: zsh-theme-powerlevel9k

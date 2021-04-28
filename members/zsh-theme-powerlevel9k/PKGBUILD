@@ -1,0 +1,40 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='zsh-theme-powerlevel9k'
+pkgver='0.6.7'
+pkgrel='1'
+pkgdesc='Powerlevel9k theme for zsh'
+arch=('any')
+_repo='https://github.com/Powerlevel9k/powerlevel9k'
+url='https://github.com/Powerlevel9k/powerlevel9k'
+license=('MIT')
+makedepends=('coreutils')
+optdepends=(
+  'zsh: Consumer of this plugin'
+  'powerline-fonts: Patched fonts for powerline'
+  'oh-my-zsh-git: oh-my-zsh integration'
+  'prezto-git: Prezto integration'
+  'antigen-git: Antigen integration'
+  'zpm: ZPM integration'
+  'zsh-zim-git: Zim integration'
+  'awesome-terminal-fonts: Icon package'
+  'acpi: Battery monitoring'
+  'git: Status of repository'
+  'mercurial: Status of repository'
+  'systemd: Virtualization detection'
+  'openssh: SSH detection'
+)
+source=("powerlevel9k-$pkgver.tar.gz::$_repo/archive/refs/tags/v$pkgver.tar.gz")
+sha1sums=('SKIP')
+
+package() {
+  cd "$srcdir/powerlevel9k-$pkgver"
+
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+
+  _powerlevel9k="$pkgdir/usr/share/zsh-theme-powerlevel9k"
+  install -Dm644 powerlevel9k.zsh-theme "$_powerlevel9k/powerlevel9k.zsh-theme"
+  mkdir -p "$_powerlevel9k/functions/"
+  cp -r functions/*.zsh "$_powerlevel9k/functions/"
+}
