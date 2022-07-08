@@ -1,0 +1,11 @@
+#! /usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Name=Not Tetris
+Comment=Tetris but with too much physics
+Icon=love07
+Type=Application
+Categories=Game;ArcadeGame;
+Keywords=tetris;nottetris;nottetris2;
+Exec=nottetris2
+Terminal=false

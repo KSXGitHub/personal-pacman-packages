@@ -1,0 +1,52 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='nottetris2-dev'
+pkgdesc='Tetris but with too much physics'
+_commit='62c05953341b74f601d7f0003529fab9764a166b'
+pkgver='2021.09.03'
+pkgrel='1'
+depends=('love07' 'bash')
+provides=('nottetris2')
+conflicts=('nottetris2')
+arch=('x86_64')
+_repo='https://github.com/Stabyourself/nottetris2'
+url='https://stabyourself.net/nottetris2/'
+license=('WTFPL')
+source=(
+  "$_repo/archive/$_commit.zip"
+  "$_repo/raw/$_commit/LICENSE.txt"
+  nottetris2.desktop
+)
+sha1sums=(
+  'SKIP'
+  'SKIP'
+  'SKIP'
+)
+
+package() {
+  _data_dir="$pkgdir/usr/share/nottetris2"
+  _exec_file="$pkgdir/usr/bin/nottetris2"
+  _desktop_file="$pkgdir/usr/share/applications/nottetris2.desktop"
+  _license_file="$pkgdir/usr/share/licenses/nottetris2/LICENSE.txt"
+
+  msg2 "Installing game data to $_data_dir"
+  mkdir -p "$_data_dir"
+  (
+    cd "$srcdir/nottetris2-$_commit"
+    cp -r . "$_data_dir"
+  )
+
+  msg2 "Installing executable to $_exec_file"
+  mkdir -p "$(dirname "$_exec_file")"
+  (
+    echo '#!/bin/bash'
+    echo 'set -o errexit -o pipefail -o nounset'
+    echo "cd $_data_dir"
+    echo 'exec love07 .'
+  ) >"$_exec_file"
+  chmod +x "$_exec_file"
+
+  msg2 'Installing other files'
+  install -Dm755 "$srcdir/nottetris2.desktop" "$_desktop_file"
+  install -Dm644 "$srcdir/LICENSE.txt" "$_license_file"
+}

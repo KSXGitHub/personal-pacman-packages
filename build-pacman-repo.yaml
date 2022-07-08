@@ -16,6 +16,7 @@ members:
   - directory: gnome-shell-extension-workspace-isolated-dash
   - directory: ion-shell-dev
   - directory: makepad-dev
+  - directory: nottetris2-dev
   - directory: numix-circle-icon-theme-dev
   - directory: numix-icon-theme-dev
   - directory: oh-my-zsh-dev
