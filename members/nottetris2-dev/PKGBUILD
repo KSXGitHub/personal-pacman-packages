@@ -15,9 +15,11 @@ license=('WTFPL')
 source=(
   "$_repo/archive/$_commit.zip"
   "$_repo/raw/$_commit/LICENSE.txt"
+  nottetris2.bash
   nottetris2.desktop
 )
 sha1sums=(
+  'SKIP'
   'SKIP'
   'SKIP'
   'SKIP'
