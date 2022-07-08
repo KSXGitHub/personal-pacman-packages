@@ -37,14 +37,7 @@ package() {
   )
 
   msg2 "Installing executable to $_exec_file"
-  mkdir -p "$(dirname "$_exec_file")"
-  (
-    echo '#!/bin/bash'
-    echo 'set -o errexit -o pipefail -o nounset'
-    echo "cd $_data_dir"
-    echo 'exec love07 .'
-  ) >"$_exec_file"
-  chmod +x "$_exec_file"
+  install -Dm755 "$srcdir/nottetris2.bash" "$_exec_file"
 
   msg2 'Installing other files'
   install -Dm755 "$srcdir/nottetris2.desktop" "$_desktop_file"
