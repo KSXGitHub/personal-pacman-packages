@@ -114,4 +114,14 @@ package() {
 
   install -Dm644 "$srcdir/pkgconfig.libvlc.pc" "$vlc_dir/usr/lib/pkgconfig/libvlc.pc"
   install -Dm644 "$srcdir/pkgconfig.vlc-plugin.pc" "$vlc_dir/usr/lib/pkgconfig/vlc-plugin.pc"
+
+  lib_patches="$vlc_dir/lib/patches"
+  mkdir -p "$lib_patches"
+  ln -s '/usr/lib/liblua.so.5.2' "$lib_patches/liblua5.2.so.0"
+  ln -s '/usr/lib/libupnp.so' "$lib_patches/libupnp.so.13"
+  ln -s '/usr/lib/libupnp.so' "$lib_patches/libupnp.so.14"
+  ln -s '/usr/lib/libupnp.so' "$lib_patches/libupnp.so.15"
+  ln -s '/usr/lib/libixml.so' "$lib_patches/libixml.so.10"
+  ln -s '/usr/lib/libixml.so' "$lib_patches/libixml.so.11"
+  ln -s '/usr/lib/libixml.so' "$lib_patches/libixml.so.12"
 }

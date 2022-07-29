@@ -11,6 +11,8 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/lib/vlc
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/lib/pkgconfig
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/libexec
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/libexec/vlc
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/lib/patches
 
 # Qt variables
 export USE_qt5=true
