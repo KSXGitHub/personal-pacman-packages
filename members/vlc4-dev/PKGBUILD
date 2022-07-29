@@ -118,6 +118,8 @@ package() {
   lib_patches="$vlc_dir/lib/patches"
   mkdir -p "$lib_patches"
   ln -s '/usr/lib/liblua.so.5.2' "$lib_patches/liblua5.2.so.0"
+  ln -s '/usr/lib/liblua.so.5.2' "$lib_patches/liblua5.2.so.1"
+  ln -s '/usr/lib/liblua.so.5.2' "$lib_patches/liblua5.2.so.2"
   ln -s '/usr/lib/libnettle.so' "$lib_patches/libnettle.so.7"
   ln -s '/usr/lib/libnettle.so' "$lib_patches/libnettle.so.8"
   ln -s '/usr/lib/libnettle.so' "$lib_patches/libnettle.so.9"
