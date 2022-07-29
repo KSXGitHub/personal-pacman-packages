@@ -1,10 +1,10 @@
 #! /usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
-Name=VLC media player 4.0-dev
+Name=VLC 4.0-dev
 GenericName=Media player
 Comment=Read, capture, broadcast your multimedia streams
-Name[vi]=Trình phát media VLC 4.0-dev
+Name[vi]=VLC 4.0-dev
 GenericName[vi]=Trình phát Media
 Comment[vi]=Đọc, chụp, phát các luồng đa phương tiện của bạn
 Exec=vlc4 --started-from-file %U
