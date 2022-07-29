@@ -84,9 +84,10 @@ optdepends=(
 )
 makedepends=(
   'coreutils'
+  'xz'
 )
 source=(
-  "usr.$pkgver.tgz::$_repo/releases/download/$pkgver/usr.tgz"
+  "usr.$pkgver.tar.xz::$_repo/releases/download/$pkgver/usr.tar.xz"
   'vlc4'
   'vlc4.desktop'
 )
