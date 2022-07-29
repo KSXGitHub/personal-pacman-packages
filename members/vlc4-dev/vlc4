@@ -1,0 +1,19 @@
+#!/bin/bash
+set -o errexit -o pipefail -o nounset
+
+# VLC installation directory
+vlc_dir=/opt/vlc4
+
+# System variables
+export PATH=${PATH:-}:$vlc_dir/usr/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/lib
+
+# Qt variables
+export USE_qt5=true
+
+# VLC variables
+export VLC_DATA_PATH=$vlc_dir/usr/share/vlc
+export VLC_PLUGIN_PATH=$vlc_dir/usr/lib/vlc/plugins
+
+# Launch VLC
+exec "$vlc_dir/usr/bin/vlc" "$@"
