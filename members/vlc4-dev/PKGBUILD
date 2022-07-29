@@ -90,8 +90,10 @@ source=(
   "usr.$pkgver.tar.xz::$_repo/releases/download/$pkgver/usr.tar.xz"
   'vlc4'
   'vlc4.desktop'
+  'vlc4.svg'
 )
 sha256sums=(
+  'SKIP'
   'SKIP'
   'SKIP'
   'SKIP'
@@ -100,6 +102,7 @@ sha256sums=(
 package() {
   install -Dm755 "$srcdir/vlc4" "$pkgdir/usr/bin/vlc4"
   install -Dm755 "$srcdir/vlc4.desktop" "$pkgdir/usr/share/applications/vlc4.desktop"
+  install -Dm644 "$srcdir/vlc4.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/vlc4.svg"
   vlc_dir="$pkgdir/opt/vlc4"
   mkdir -p "$vlc_dir"
   cp -r "$srcdir/usr" "$vlc_dir/usr"
