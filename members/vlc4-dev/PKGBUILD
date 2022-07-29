@@ -3,7 +3,7 @@
 pkgname='vlc4-dev'
 pkgdesc="A multi-platform MPEG, VCD/DVD, and DivX player (DEV version)"
 pkgver='2022.07.28'
-pkgrel='2'
+pkgrel='3'
 arch=('any')
 url='https://nightlies.videolan.org/'
 _repo='https://github.com/KSXGitHub/vlc4-dev-archives'
