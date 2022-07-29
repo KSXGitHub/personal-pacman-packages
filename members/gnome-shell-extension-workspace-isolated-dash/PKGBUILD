@@ -14,6 +14,7 @@ optdepends=(
 )
 makedepends=(
   'coreutils'
+  'sed'
 )
 source=(
   "$url/archive/$_commit.zip"
@@ -29,6 +30,7 @@ package() {
   install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
   cd "$srcdir/$pkgname-$_commit/workspace-isolated-dash"
   dest="$pkgdir/usr/share/gnome-shell/extensions/$_uuid"
-  install -Dm644 metadata.json "$dest/metadata.json"
+  mkdir -p "$dest"
+  sed 's/n-yuki/wakira/gi' metadata.json >"$dest/metadata.json"
   install -Dm644 extension.js "$dest/extension.js"
 }
