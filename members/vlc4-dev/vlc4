@@ -6,6 +6,8 @@ vlc_dir=/opt/vlc4
 
 # System variables
 export PATH=${PATH:-}:$vlc_dir/usr/bin
+export PATH=${PATH:-}:$vlc_dir/usr/libexec
+export PATH=${PATH:-}:$vlc_dir/usr/libexec/vlc
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/lib
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/lib/vlc
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}:$vlc_dir/usr/lib/pkgconfig
