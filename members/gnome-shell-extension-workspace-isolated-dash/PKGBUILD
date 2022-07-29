@@ -2,10 +2,11 @@
 
 pkgname='gnome-shell-extension-workspace-isolated-dash'
 pkgdesc='Isolate workspaces in Gnome Shell'
-pkgver='15'
+_commit='53c28b2fc224b142bfd676ae20786434990a8022'
+pkgver='2022.04.01'
 pkgrel='1'
 arch=('any')
-url='https://github.com/N-Yuki/gnome-shell-extension-workspace-isolated-dash'
+url='https://github.com/wakira/gnome-shell-extension-workspace-isolated-dash'
 license=('GPL-2.0')
 optdepends=(
   'gnome-shell>=3'
@@ -15,18 +16,18 @@ makedepends=(
   'coreutils'
 )
 source=(
-  "$url/archive/v$pkgver.tar.gz"
+  "$url/archive/$_commit.zip"
 )
 sha512sums=(
   'SKIP'
 )
-_uuid='workspace-isolated-dash@n-yuki'
+_uuid='workspace-isolated-dash@wakira'
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_commit"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
-  cd "$srcdir/$pkgname-$pkgver/workspace-isolated-dash"
+  cd "$srcdir/$pkgname-$_commit/workspace-isolated-dash"
   dest="$pkgdir/usr/share/gnome-shell/extensions/$_uuid"
   install -Dm644 metadata.json "$dest/metadata.json"
   install -Dm644 extension.js "$dest/extension.js"
