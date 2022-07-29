@@ -91,8 +91,12 @@ source=(
   'vlc4'
   'vlc4.desktop'
   'vlc4.svg'
+  'pkgconfig.libvlc.pc'
+  'pkgconfig.vlc-plugin.pc'
 )
 sha256sums=(
+  'SKIP'
+  'SKIP'
   'SKIP'
   'SKIP'
   'SKIP'
@@ -106,4 +110,6 @@ package() {
   vlc_dir="$pkgdir/opt/vlc4"
   mkdir -p "$vlc_dir"
   cp -r "$srcdir/usr" "$vlc_dir/usr"
+  install -Dm644 "$srcdir/pkgconfig.libvlc.pc" "$vlc_dir/usr/lib/pkgconfig/libvlc.pc"
+  install -Dm644 "$srcdir/pkgconfig.vlc-plugin.pc" "$vlc_dir/usr/lib/pkgconfig/vlc-plugin.pc"
 }
