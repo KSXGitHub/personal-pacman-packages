@@ -21,6 +21,7 @@ members:
   - directory: numix-icon-theme-dev
   - directory: oh-my-zsh-dev
   - directory: ruffle-nightly
+  - directory: upscayl-appimage
   - directory: vlc4-dev
   - directory: zsh-autocomplete-dev
   - directory: zsh-theme-powerlevel9k
