@@ -2,7 +2,6 @@
 
 pkgname='numix-icon-theme-dev'
 pkgdesc='Base icon theme from the Numix project'
-_commit='7d382d38b33e395a13f081e48c48c9acb4136f06'
 _tag='23.02.13'
 pkgver="20$_tag"
 pkgrel='1'
@@ -21,11 +20,11 @@ conflicts=(
   'numix-light-icon-theme'
 )
 options=('!strip')
-source=("$_repo/archive/$_commit.zip")
+source=("$_repo/archive/$_tag.zip")
 sha256sums=('SKIP')
 
 package() {
-  cd "$srcdir/numix-icon-theme-$_commit"
+  cd "$srcdir/numix-icon-theme-$_tag"
   install -dm 755 "$pkgdir/usr/share/icons"
   cp -dr --no-preserve=ownership Numix{,-Light} "$pkgdir/usr/share/icons/"
 }
