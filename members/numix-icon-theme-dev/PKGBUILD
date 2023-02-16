@@ -20,7 +20,7 @@ conflicts=(
   'numix-light-icon-theme'
 )
 options=('!strip')
-source=("$_repo/archive/$_tag.zip")
+source=("$_repo/archive/refs/tags/$_tag.tar.gz")
 sha256sums=('SKIP')
 
 package() {
