@@ -2,7 +2,7 @@
 
 pkgname='numix-circle-icon-theme-dev'
 pkgdesc='Circle icon theme from the Numix project'
-_tag='23.06.11'
+_tag='23.10.03'
 pkgver="20$_tag"
 pkgrel='1'
 arch=('any')
