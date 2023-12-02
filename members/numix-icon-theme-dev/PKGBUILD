@@ -2,7 +2,7 @@
 
 pkgname='numix-icon-theme-dev'
 pkgdesc='Base icon theme from the Numix project'
-_tag='23.11.11'
+_tag='23.12.02'
 pkgver="20$_tag"
 pkgrel='1'
 arch=('any')
