@@ -30,6 +30,7 @@ source=(
 sha512sums=(
   'SKIP'
 )
+options=(!strip)
 
 package() {
   cd "$srcdir/gnome-shell-extension-github-notifications-$_commit"
