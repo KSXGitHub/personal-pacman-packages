@@ -1,0 +1,45 @@
+# Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
+
+pkgname='gnome-shell-extension-github-notifications-gnome45'
+pkgdesc='GNOME GitHub Notifications extension with patch that supports GNOME Shell 45'
+_commit='458eff083bb5434fb5e2b7e246c5a9a0632a6501'
+pkgver='2024.02.29'
+pkgrel='1'
+arch=('x86_64')
+_repo='https://github.com/KSXGitHub/gnome-shell-extension-github-notifications'
+url='https://github.com/KSXGitHub/gnome-shell-extension-github-notifications'
+license=('GPL-2.0')
+conflicts=('gnome-shell-extension-github-notifications' 'gnome-shell-extension-github-notifications-pr52')
+replaces=('gnome-shell-extension-github-notifications-pr52')
+provides=('gnome-shell-extension-github-notifications')
+optdepends=(
+  'gnome-shell>=45'
+  'gjs: GNOME Shell use GJS to run its extensions'
+)
+makedepends=(
+  'coreutils'
+  'just'
+  'cargo'
+  'nodejs'
+  'jq'
+  'upx'
+)
+source=(
+  "$_repo/archive/$_commit.zip"
+)
+sha512sums=(
+  'SKIP'
+)
+
+package() {
+  cd "$srcdir/gnome-shell-extension-github-notifications-$_commit"
+  just build
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+  local parent="$pkgdir/usr/share/gnome-shell/extensions"
+  mkdir -p "$parent"
+  local uuid=$(jq -r .uuid < assets/metadata.json)
+  dest="$parent/$uuid"
+  rm -rf "$dest"
+  cp -r dist "$dest"
+}
