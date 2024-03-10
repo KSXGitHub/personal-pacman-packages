@@ -2,19 +2,21 @@
 
 pkgname='gnome-shell-extension-workspace-isolated-dash'
 pkgdesc='Isolate workspaces in Gnome Shell'
-_commit='53c28b2fc224b142bfd676ae20786434990a8022'
-pkgver='2022.04.01'
-pkgrel='2'
+_commit='ad4ba5d476211f256237cea3f5ac4f1e70e7ea3b'
+pkgver='2024.02.29'
+pkgrel='1'
 arch=('any')
-url='https://github.com/wakira/gnome-shell-extension-workspace-isolated-dash'
+url='https://github.com/KSXGitHub/workspace-isolated-dash'
 license=('GPL-2.0')
 optdepends=(
-  'gnome-shell>=3'
+  'gnome-shell>=45'
   'gjs: GNOME Shell use GJS to run its extensions'
 )
 makedepends=(
   'coreutils'
-  'sed'
+  'jq'
+  'make'
+  'nodejs'
 )
 source=(
   "$url/archive/$_commit.zip"
@@ -22,15 +24,16 @@ source=(
 sha512sums=(
   'SKIP'
 )
-_uuid='workspace-isolated-dash@wakira'
 
 package() {
-  cd "$srcdir/$pkgname-$_commit"
+  cd "$srcdir/workspace-isolated-dash-$_commit"
+  make build
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
-  cd "$srcdir/$pkgname-$_commit/workspace-isolated-dash"
-  dest="$pkgdir/usr/share/gnome-shell/extensions/$_uuid"
-  mkdir -p "$dest"
-  sed 's/n-yuki/wakira/gi' metadata.json >"$dest/metadata.json"
-  install -Dm644 extension.js "$dest/extension.js"
+  local parent="$pkgdir/usr/share/gnome-shell/extensions"
+  mkdir -p "$parent"
+  local uuid=$(jq -r .uuid < src/metadata.json)
+  dest="$parent/$uuid"
+  rm -rf "$dest"
+  cp -r dist "$dest"
 }
